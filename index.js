@@ -6,11 +6,14 @@ function saveMyTask(e){
     var manager = document.getElementById("manager").value;
     let task = {name, descripcion, manager};
 
-    if(localStorage.getItem('task') != null){
+    if(localStorage.getItem('task') == null){
+        let tasks = [];
+        tasks.push(task);
+        localStorage.setItem('task', JSON.stringify(tasks));
+    } else{
         let tasks = JSON.parse(localStorage.getItem('task'));
         tasks.push(task);
         localStorage.setItem('task', JSON.stringify(tasks));
-        console.log(JSON.stringify(tasks));
     }
     
     getMyTask();
